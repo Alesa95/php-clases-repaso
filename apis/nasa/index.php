@@ -19,7 +19,17 @@
     curl_close($curl);
 
     $datos = json_decode($respuesta, true);
-    print_r($datos);
+
+    if(isset($datos["hdurl"])) {
+        $imagen = $datos["hdurl"];
+    } else {
+        $imagen = $datos["url"];
+    }
     ?>
+
+    <h1><?= $datos["title"] ?></h1>
+    <h2><?= $datos["date"] ?></h2>
+    <p><?= $datos["explanation"] ?></p>
+    <img width=50% src="<?= $imagen ?>">
 </body>
 </html>
